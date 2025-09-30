@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VANI GRAPHICS - Innovative Packaging Solutions</title>
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f62fe;
+            --accent: #ffb703;
+            --muted: #666;
+            --light: #f5f5f5;
+            --dark: #333;
+            --nav-dark: #1a1a2e;
+            --header-bg: #2d2d2d;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --led-height: 8px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--muted);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Enhanced Header with Wave Animation */
+        header {
+            position: relative;
+            height: 35vh;
+            min-height: 200px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #2d2d2d 0%, #2d2d2d 25%, #00a8a8 50%, #2d2d2d 75%, #2d2d2d 100%);
+            background-size: 400% 400%;
+            transition: background-position 0.5s ease;
+            cursor: pointer;
+        }
+
+        /* Wave Animation Container */
+        .wave-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Wave Layers */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background-repeat: repeat-x;
+            opacity: 0.7;
+            transform-origin: center bottom;
+        }
+
+        .wave-1 {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%2300a8a8"/></svg>');
+            animation: wave 18s linear infinite;
+            z-index: 1;
+        }
+
+        .wave-2 {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".5" fill="%2300a8a8"/></svg>');
+            animation: wave 16s linear infinite reverse;
+            z-index: 2;
+        }
+
+        .wave-3 {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".75" fill="%2300a8a8"/></svg>');
+            animation: wave 20s linear infinite;
+            z-index: 3;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: translateX(0) translateZ(0) scaleY(1);
+            }
+            50% {
+                transform: translateX(-25%) translateZ(0) scaleY(0.9);
+            }
+            100% {
+                transform: translateX(-50%) translateZ(0) scaleY(1);
+            }
+        }
+
+        /* LED Strip Styles */
+        .led-strip {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: var(--led-height);
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .led-strip-top {
+            top: 0;
+        }
+
+        .led-strip-bottom {
+            bottom: 0;
+        }
+
+        .led-lights {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            animation: ledMove 8s linear infinite;
+        }
+
+        .led-strip-top .led-light {
+            background: linear-gradient(90deg, 
+                #ff0080, #ff8000, #ffff00,
+                #80ff00, #00ff80, #00ffff,
+                #0080ff, #8000ff, #ff0080);
+            box-shadow: 0 0 15px rgba(255, 0, 128, 0.8);
+        }
+
+        .led-strip-bottom .led-light {
+            background: linear-gradient(90deg, 
+                #0080ff, #8000ff, #ff0080,
+                #ff8000, #ffff00, #80ff00,
+                #00ff80, #00ffff, #0080ff);
+            box-shadow: 0 0 15px rgba(0, 128, 255, 0.8);
+        }
+
+        .led-light {
+            flex: 1;
+            height: 100%;
+            position: relative;
+            filter: brightness(1.2);
+        }
+
+        .led-light::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            filter: blur(8px);
+            opacity: 0.7;
+        }
+
+        @keyframes ledMove {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-66.66%);
+            }
+        }
+
+        /* Header Content */
+        .company-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            text-align: center;
+            width: 80%;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-overlay {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transform: translateY(20px);
+            transition: transform 0.5s ease;
+        }
+
+        .logo-overlay img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .header-content {
+            position: relative;
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Wavy Text Animation */
+        .wavy-text {
+            display: inline-block;
+        }
+
+        .wavy-text span {
+            display: inline-block;
+            animation: wavy 1.5s ease-in-out infinite;
+            animation-delay: calc(.1s * var(--i));
+        }
+
+        @keyframes wavy {
+            0%, 40%, 100% {
+                transform: translateY(0);
+            }
+            20% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Sparkle effect */
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            animation: sparkle 1.5s ease-out forwards;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            font-weight: 300;
+            transform: translateY(-10px);
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Interactive Effects */
+        header:hover .wave-1 {
+            animation-duration: 12s;
+        }
+
+        header:hover .wave-2 {
+            animation-duration: 10s;
+        }
+
+        header:hover .wave-3 {
+            animation-duration: 14s;
+        }
+
+        header.active {
+            animation: pulse 2s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .logo-overlay:hover, header.active .logo-overlay {
+            animation: logoWave 1.5s ease-in-out;
+        }
+
+        @keyframes logoWave {
+            0%, 100% {
+                transform: translateY(20px) rotate(0deg);
+            }
+            25% {
+                transform: translateY(10px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(20px) rotate(0deg);
+            }
+            75% {
+                transform: translateY(30px) rotate(-5deg);
+            }
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: var(--nav-dark);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            position: relative;
+            color: white;
+            font-weight: 500;
+        }
+
+        .nav-tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-tab.active {
+            border-bottom: 3px solid var(--accent);
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(255, 183, 3, 0);
+            transition: box-shadow 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-tab:hover::before {
+            box-shadow: 0 0 15px rgba(255, 183, 3, 0.7);
+        }
+
+        .nav-tab.active::before {
+            box-shadow: 0 0 10px rgba(255, 183, 3, 0.5);
+        }
+
+        /* Section Styles */
+        .section {
+            display: none;
+            padding: 4rem 0;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 1rem auto;
+        }
+
+        /* Home Section */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 4rem;
+            gap: 2rem;
+        }
+
+        .profile-content {
+            flex: 1;
+            padding: 1rem;
+        }
+
+        .profile-image {
+            flex: 1;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background-color: var(--light);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .company-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        /* Gallery Section */
+        .segment-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .segment-tab {
+            padding: 0.5rem 1rem;
+            background-color: var(--light);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .segment-tab.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 200px;
+            background-color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .product-details {
+            padding: 1.5rem;
+        }
+
+        .product-specs {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .treatments-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .treatment-tag {
+            background-color: rgba(15, 98, 254, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .add-to-cart {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #0a4dc8;
+        }
+
+        /* Cart Section */
+        .cart-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .cart-items {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quantity-btn {
+            background-color: var(--light);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-input {
+            width: 80px;
+            text-align: center;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+        }
+
+        .remove-item {
+            color: #ff4d4d;
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+
+        .cart-summary {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .summary-total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .cart-action-btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-order {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .clear-cart {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        /* Quotation Form */
+        .quotation-form {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-family: inherit;
+        }
+
+        .dimensions-container {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .dimension-input {
+            flex: 1;
+        }
+
+        .form-checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .form-btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .clear-btn {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .whatsapp-link {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .whatsapp-link:hover {
+            background-color: #128C7E;
+        }
+
+        /* Floating Cart */
+        .floating-cart {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-cart:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--accent);
+            color: var(--dark);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Image Modal Styles */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1100;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: var(--radius);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-nav:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        .image-title {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* Animation Classes */
+        @keyframes flash {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .flash {
+            animation: flash 0.5s ease;
+        }
+
+        .hidden {
+            display: none;
+        }
+        
+        /* Fallback for missing images */
+        .image-fallback {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            color: #666;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Responsive Styles */
+        @media (min-width: 768px) {
+            .profile-section {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .profile-section:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .cart-container {
+                flex-direction: row;
+            }
+            
+            .cart-items {
+                flex: 2;
+            }
+            
+            .cart-summary {
+                flex: 1;
+                align-self: flex-start;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .header-content h1 {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .logo-overlay {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section with Wave Animation -->
+    <header id="main-header">
+        <!-- Top LED Strip -->
+        <div class="led-strip led-strip-top">
+            <div class="led-lights">
+                <div class="led-light"></div>
+                <div class="led-light"></div>
+                <div class="led-light"></div>
+            </div>
+        </div>
+        
+        <!-- Bottom LED Strip -->
+        <div class="led-strip led-strip-bottom">
+            <div class="led-lights">
+                <div class="led-light"></div>
+                <div class="led-light"></div>
+                <div class="led-light"></div>
+            </div>
+        </div>
+        
+        <!-- Wave Animation -->
+        <div class="wave-container">
+            <div class="wave wave-1"></div>
+            <div class="wave wave-2"></div>
+            <div class="wave wave-3"></div>
+        </div>
+        
+        <div class="company-overlay">
+            <div class="logo-overlay">
+                <img src="images/logo.png" alt="VANI GRAPHICS Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'>VANI GRAPHICS<br>Logo</div>';">
+            </div>
+            <div class="header-content">
+                <h1 class="wavy-text">
+                    <span style="--i:1">V</span>
+                    <span style="--i:2">A</span>
+                    <span style="--i:3">N</span>
+                    <span style="--i:4">I</span>
+                    <span style="--i:5"> </span>
+                    <span style="--i:6">G</span>
+                    <span style="--i:7">R</span>
+                    <span style="--i:8">A</span>
+                    <span style="--i:9">P</span>
+                    <span style="--i:10">H</span>
+                    <span style="--i:11">I</span>
+                    <span style="--i:12">C</span>
+                    <span style="--i:13">S</span>
+                </h1>
+                <p class="tagline">Innovative Packaging Solutions</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <ul class="nav-tabs">
+                    <li class="nav-tab active" data-target="home">Home</li>
+                    <li class="nav-tab" data-target="gallery">Gallery</li>
+                    <li class="nav-tab" data-target="cart">Cart</li>
+                    <li class="nav-tab" data-target="quotations">Quotations</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <h2 class="section-title">About VANI GRAPHICS</h2>
+            
+            <div class="profile-section">
+                <div class="profile-content">
+                    <h3>Our Mission</h3>
+                    <p>At VANI GRAPHICS, we are committed to delivering innovative packaging solutions that not only protect your products but also enhance their appeal in the marketplace.</p>
+                </div>
+                <div class="profile-image" data-image="images/image1.gif" data-title="Our Mission">
+                    <img src="images/image1.gif" alt="Our Mission" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'>Mission Image</div>';">
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <div class="profile-content">
+                    <h3>Quality Assurance</h3>
+                    <p>We maintain stringent quality control measures to ensure that every packaging solution meets the highest standards of durability and visual appeal.</p>
+                </div>
+                <div class="profile-image" data-image="images/image2.gif" data-title="Quality Assurance">
+                    <img src="images/image2.gif" alt="Quality Assurance" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'>Quality Image</div>';">
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <div class="profile-content">
+                    <h3>Custom Solutions</h3>
+                    <p>Our team works closely with clients to develop custom packaging solutions that align with their brand identity and product requirements.</p>
+                </div>
+                <div class="profile-image" data-image="images/image3.jpg" data-title="Custom Solutions">
+                    <img src="images/image3.jpg" alt="Custom Solutions" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'>Custom Solutions</div>';">
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <div class="profile-content">
+                    <h3>Sustainability</h3>
+                    <p>We are committed to environmentally responsible practices, offering eco-friendly packaging options that minimize environmental impact.</p>
+                </div>
+                <div class="profile-image" data-image="images/image4.jpg" data-title="Sustainability">
+                    <img src="images/image4.jpg" alt="Sustainability" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'>Sustainability</div>';">
+                </div>
+            </div>
+            
+            <div class="company-footer">
+                <p>VANI GRAPHICS has been a trusted name in packaging solutions for over a decade, serving clients across various industries with innovative and reliable packaging products.</p>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section">
+            <h2 class="section-title">Our Products</h2>
+            
+            <div class="segment-tabs">
+                <div class="segment-tab active" data-category="all">All Products</div>
+                <div class="segment-tab" data-category="garment">Garment</div>
+                <div class="segment-tab" data-category="pharma">Pharma</div>
+                <div class="segment-tab" data-category="incense">Incense & Perfume</div>
+                <div class="segment-tab" data-category="food">Food & Spices</div>
+                <div class="segment-tab" data-category="others">Others</div>
+                <div class="segment-tab" data-category="surgical">Surgical</div>
+            </div>
+            
+            <div class="products-grid" id="products-container">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Cart Section -->
+        <section id="cart" class="section">
+            <h2 class="section-title">Your Cart</h2>
+            
+            <div class="cart-container">
+                <div class="cart-items" id="cart-items">
+                    <!-- Cart items will be dynamically inserted here -->
+                    <p class="empty-cart-message">Your cart is empty</p>
+                </div>
+                
+                <div class="cart-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">₹0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>GST (5%):</span>
+                        <span id="gst">₹0</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total:</span>
+                        <span id="total">₹0</span>
+                    </div>
+                    
+                    <div class="cart-actions">
+                        <button class="cart-action-btn whatsapp-order" id="whatsapp-order">WhatsApp Order</button>
+                        <button class="cart-action-btn clear-cart" id="clear-cart">Clear Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quotations Section -->
+        <section id="quotations" class="section">
+            <h2 class="section-title">Request a Quotation</h2>
+            
+            <form class="quotation-form" id="quotation-form">
+                <div class="form-group">
+                    <label class="form-label" for="unit-type">Unit Type</label>
+                    <select class="form-select" id="unit-type" name="unit-type">
+                        <option value="">Select Unit Type</option>
+                        <option value="mm">Millimeters (mm)</option>
+                        <option value="inches">Inches</option>
+                        <option value="cm">Centimeters (cm)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Dimensions</label>
+                    <div class="dimensions-container">
+                        <div class="dimension-input">
+                            <input type="number" class="form-input" id="length" name="length" placeholder="Length">
+                        </div>
+                        <div class="dimension-input">
+                            <input type="number" class="form-input" id="width" name="width" placeholder="Width">
+                        </div>
+                        <div class="dimension-input">
+                            <input type="number" class="form-input" id="height" name="height" placeholder="Height">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="material">Material</label>
+                    <select class="form-select" id="material" name="material">
+                        <option value="">Select Material</option>
+                        <option value="ITC">ITC</option>
+                        <option value="Duplex">Duplex</option>
+                        <option value="Corrugation">Corrugation</option>
+                        <option value="Artcard">Artcard</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="gsm">GSM</label>
+                    <input type="number" class="form-input" id="gsm" name="gsm" placeholder="Enter GSM">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="box-type">Box Type</label>
+                    <select class="form-select" id="box-type" name="box-type">
+                        <option value="">Select Box Type</option>
+                        <option value="Bottom lock">Bottom lock</option>
+                        <option value="Tuck in Flap">Tuck in Flap</option>
+                        <option value="Bottom pasting">Bottom pasting</option>
+                        <option value="Universal Flap">Universal Flap</option>
+                        <option value="Mailer Box">Mailer Box</option>
+                        <option value="Top Bottom">Top Bottom</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group hidden" id="other-box-type-container">
+                    <label class="form-label" for="other-box-type">Specify Box Type</label>
+                    <input type="text" class="form-input" id="other-box-type" name="other-box-type" placeholder="Enter box type">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="quantity">Quantity</label>
+                    <input type="number" class="form-input" id="quantity" name="quantity" min="2000" value="2000" step="500">
+                    <small>Minimum order: 2000 units</small>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Special Finishes</label>
+                    <div class="form-checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="emboss" name="finishes" value="Emboss">
+                            <label for="emboss">Emboss</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="leaf" name="finishes" value="Leaf">
+                            <label for="leaf">Leaf</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="texture" name="finishes" value="Texture">
+                            <label for="texture">Texture</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="form-btn submit-btn">Send via WhatsApp</button>
+                    <button type="button" class="form-btn clear-btn" id="clear-form">Clear Form</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>VANI GRAPHICS</p>
+                <p>Email: info@vanigraphics.com</p>
+                <p>Phone: +91 7770975666</p>
+            </div>
+            <a href="https://wa.me/917770975666" class="whatsapp-link" target="_blank">Contact via WhatsApp</a>
+        </div>
+    </footer>
+
+    <!-- Floating Cart Button -->
+    <div class="floating-cart" id="floating-cart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <div class="cart-count" id="cart-count">0</div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="image-modal">
+        <button class="modal-close" id="modal-close">×</button>
+        <button class="modal-nav modal-prev" id="modal-prev">‹</button>
+        <button class="modal-nav modal-next" id="modal-next">›</button>
+        <div class="modal-content">
+            <img id="modal-image" src="" alt="">
+            <div class="image-title" id="image-title"></div>
+        </div>
+    </div>
+
+    <script>
+        // Sparkle effect for company name
+        function createSparkleEffect() {
+            const companyName = document.querySelector('.header-content h1');
+            
+            setInterval(() => {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                
+                const rect = companyName.getBoundingClientRect();
+                const x = Math.random() * rect.width;
+                const y = Math.random() * rect.height;
+                
+                sparkle.style.left = `${x}px`;
+                sparkle.style.top = `${y}px`;
+                
+                companyName.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1500);
+            }, 200);
+        }
+
+        // Product Data
+        const products = [
+            {
+                id: 1,
+                title: "Garment Box",
+                category: "garment",
+                image: "images/garment/garment1.jpg",
+                specs: {
+                    size: "30x20x5 cm",
+                    material: "ITC",
+                    gsm: "250",
+                    treatments: ["Lamination", "Emboss"],
+                    rate: "₹12 per unit"
+                }
+            },
+            {
+                id: 2,
+                title: "Pharma Carton",
+                category: "pharma",
+                image: "images/pharma/pharma1.jpg",
+                specs: {
+                    size: "15x10x5 cm",
+                    material: "Corrugation",
+                    gsm: "300",
+                    treatments: ["Matte Finish", "Spot UV"],
+                    rate: "₹8.5 per unit"
+                }
+            },
+            {
+                id: 3,
+                title: "Incense Stick Box",
+                category: "incense",
+                image: "images/incense/incense1.jpg",
+                specs: {
+                    size: "12x8x3 cm",
+                    material: "Artcard",
+                    gsm: "200",
+                    treatments: ["Embossed", "Leaf"],
+                    rate: "₹6 per unit"
+                }
+            },
+            {
+                id: 4,
+                title: "Spice Pouch",
+                category: "food",
+                image: "images/food & spices/food1.jpg",
+                specs: {
+                    size: "10x15 cm",
+                    material: "Duplex",
+                    gsm: "150",
+                    treatments: ["Zip Lock", "Texture"],
+                    rate: "₹4 per unit"
+                }
+            },
+            {
+                id: 5,
+                title: "Perfume Box",
+                category: "incense",
+                image: "images/incense/incense2.jpg",
+                specs: {
+                    size: "8x8x15 cm",
+                    material: "ITC",
+                    gsm: "280",
+                    treatments: ["Foil Stamping", "Scodex"],
+                    rate: "₹15 per unit"
+                }
+            },
+            {
+                id: 6,
+                title: "Food Container",
+                category: "food",
+                image: "images/food & spices/food2.jpg",
+                specs: {
+                    size: "20x20x10 cm",
+                    material: "Corrugation",
+                    gsm: "350",
+                    treatments: ["Water Resistant", "Window"],
+                    rate: "₹18 per unit"
+                }
+            },
+            {
+                id: 7,
+                title: "Medical Box",
+                category: "pharma",
+                image: "images/pharma/pharma2.jpg",
+                specs: {
+                    size: "25x15x10 cm",
+                    material: "Duplex",
+                    gsm: "300",
+                    treatments: ["UV Coating", "Spot UV"],
+                    rate: "₹14 per unit"
+                }
+            },
+            {
+                id: 8,
+                title: "Clothing Bag",
+                category: "garment",
+                image: "images/garment/garment2.jpg",
+                specs: {
+                    size: "40x30 cm",
+                    material: "Non-woven",
+                    gsm: "80",
+                    treatments: ["Handle Attached", "Lamination"],
+                    rate: "₹5 per unit"
+                }
+            },
+            {
+                id: 9,
+                title: "Generic Box",
+                category: "others",
+                image: "images/other/other1.jpg",
+                specs: {
+                    size: "20x15x10 cm",
+                    material: "Artcard",
+                    gsm: "250",
+                    treatments: ["Standard Finish"],
+                    rate: "₹10 per unit"
+                }
+            },
+            {
+                id: 10,
+                title: "Specialty Packaging",
+                category: "others",
+                image: "images/other/other2.jpg",
+                specs: {
+                    size: "Customizable",
+                    material: "Various",
+                    gsm: "200-400",
+                    treatments: ["Customizable"],
+                    rate: "₹12-25 per unit"
+                }
+            },
+            {
+                id: 11,
+                title: "Knee Cap",
+                category: "surgical",
+                image: "images/surgical/surgical1.jpg",
+                specs: {
+                    size: "125x80x140",
+                    material: "ITC",
+                    gsm: "350",
+                    treatments: ["Texture"],
+                    rate: "₹17.65 per unit"
+                }
+            },
+            {
+                id: 12,
+                title: "Rib Belt",
+                category: "surgical",
+                image: "images/surgical/surgical2.jpg",
+                specs: {
+                    size: "105x75x130",
+                    material: "Duplex",
+                    gsm: "350",
+                    treatments: ["BOPP with Emboss"],
+                    rate: "₹10.12 per unit"
+                }
+            }
+        ];
+
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('vaniGraphicsCart')) || [];
+
+        // DOM Elements
+        const navTabs = document.querySelectorAll('.nav-tab');
+        const sections = document.querySelectorAll('.section');
+        const segmentTabs = document.querySelectorAll('.segment-tab');
+        const productsContainer = document.getElementById('products-container');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartCount = document.getElementById('cart-count');
+        const subtotalElement = document.getElementById('subtotal');
+        const gstElement = document.getElementById('gst');
+        const totalElement = document.getElementById('total');
+        const floatingCart = document.getElementById('floating-cart');
+        const clearCartBtn = document.getElementById('clear-cart');
+        const whatsappOrderBtn = document.getElementById('whatsapp-order');
+        const quotationForm = document.getElementById('quotation-form');
+        const boxTypeSelect = document.getElementById('box-type');
+        const otherBoxTypeContainer = document.getElementById('other-box-type-container');
+        const clearFormBtn = document.getElementById('clear-form');
+        const mainHeader = document.getElementById('main-header');
+
+        // Image Modal Elements
+        const imageModal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const imageTitle = document.getElementById('image-title');
+        const modalClose = document.getElementById('modal-close');
+        const modalPrev = document.getElementById('modal-prev');
+        const modalNext = document.getElementById('modal-next');
+
+        // Image Modal Variables
+        let currentImageIndex = 0;
+        let currentImages = [];
+
+        // Initialize the application
+        function init() {
+            setupEventListeners();
+            createSparkleEffect();
+            renderProducts('all');
+            updateCartDisplay();
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Header interaction
+            mainHeader.addEventListener('click', () => {
+                mainHeader.classList.add('active');
+                setTimeout(() => {
+                    mainHeader.classList.remove('active');
+                }, 2000);
+            });
+            
+            // Enhanced wave animation on hover
+            mainHeader.addEventListener('mouseenter', () => {
+                const waves = document.querySelectorAll('.wave');
+                waves.forEach(wave => {
+                    wave.style.animationPlayState = 'running';
+                });
+            });
+            
+            // Navigation tabs
+            navTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-target');
+                    switchSection(target);
+                    
+                    navTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                });
+            });
+            
+            // Segment tabs for filtering products
+            segmentTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const category = tab.getAttribute('data-category');
+                    
+                    segmentTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    renderProducts(category);
+                });
+            });
+            
+            // Floating cart button
+            floatingCart.addEventListener('click', () => {
+                switchSection('cart');
+                
+                navTabs.forEach(t => t.classList.remove('active'));
+                document.querySelector('.nav-tab[data-target="cart"]').classList.add('active');
+            });
+            
+            // Clear cart button
+            clearCartBtn.addEventListener('click', clearCart);
+            
+            // WhatsApp order button
+            whatsappOrderBtn.addEventListener('click', sendWhatsAppOrder);
+            
+            // Box type select for showing/hiding other box type field
+            boxTypeSelect.addEventListener('change', () => {
+                if (boxTypeSelect.value === 'other') {
+                    otherBoxTypeContainer.classList.remove('hidden');
+                } else {
+                    otherBoxTypeContainer.classList.add('hidden');
+                }
+            });
+            
+            // Quotation form submission
+            quotationForm.addEventListener('submit', handleQuotationSubmit);
+            
+            // Clear form button
+            clearFormBtn.addEventListener('click', clearQuotationForm);
+            
+            // Image Modal events
+            modalClose.addEventListener('click', closeImageModal);
+            modalPrev.addEventListener('click', showPrevImage);
+            modalNext.addEventListener('click', showNextImage);
+            
+            // Close modal when clicking outside the image
+            imageModal.addEventListener('click', (e) => {
+                if (e.target === imageModal) {
+                    closeImageModal();
+                }
+            });
+            
+            // Keyboard navigation for modal
+            document.addEventListener('keydown', (e) => {
+                if (imageModal.classList.contains('active')) {
+                    if (e.key === 'Escape') {
+                        closeImageModal();
+                    } else if (e.key === 'ArrowLeft') {
+                        showPrevImage();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextImage();
+                    }
+                }
+            });
+        }
+
+        // Switch between sections
+        function switchSection(sectionId) {
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Render products based on category
+        function renderProducts(category) {
+            productsContainer.innerHTML = '';
+            
+            const filteredProducts = category === 'all' 
+                ? products 
+                : products.filter(product => product.category === category);
+            
+            if (filteredProducts.length === 0) {
+                productsContainer.innerHTML = '<p>No products found in this category.</p>';
+                return;
+            }
+            
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                let treatmentsHTML = '';
+                if (product.specs.treatments && product.specs.treatments.length > 0) {
+                    treatmentsHTML = '<div class="treatments-list">';
+                    product.specs.treatments.forEach(treatment => {
+                        treatmentsHTML += `<span class="treatment-tag">${treatment}</span>`;
+                    });
+                    treatmentsHTML += '</div>';
+                }
+                
+                productCard.innerHTML = `
+                    <div class="product-image" data-image="${product.image}" data-title="${product.title}">
+                        <img src="${product.image}" alt="${product.title}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'>${product.title}<br>Image Not Available</div>';">
+                    </div>
+                    <div class="product-details">
+                        <h3>${product.title}</h3>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span>Size:</span>
+                                <span>${product.specs.size}</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Material:</span>
+                                <span>${product.specs.material}</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>GSM:</span>
+                                <span>${product.specs.gsm}</span>
+                            </div>
+                            <div class="spec-item">
+                                <span>Treatments:</span>
+                            </div>
+                            ${treatmentsHTML}
+                            <div class="spec-item">
+                                <span>Rate:</span>
+                                <span>${product.specs.rate}</span>
+                            </div>
+                        </div>
+                        <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                    </div>
+                `;
+                
+                productsContainer.appendChild(productCard);
+            });
+            
+            // Add event listeners to Add to Cart buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = parseInt(e.target.getAttribute('data-id'));
+                    addToCart(productId);
+                });
+            });
+            
+            // Add event listeners to product images for full view
+            document.querySelectorAll('.product-image').forEach(imageContainer => {
+                imageContainer.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('image-fallback')) return;
+                    
+                    const imageSrc = imageContainer.getAttribute('data-image');
+                    const imageTitleText = imageContainer.getAttribute('data-title');
+                    openImageModal(imageSrc, imageTitleText);
+                });
+            });
+            
+            // Add event listeners to profile images for full view
+            document.querySelectorAll('.profile-image').forEach(imageContainer => {
+                imageContainer.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('image-fallback')) return;
+                    
+                    const imageSrc = imageContainer.getAttribute('data-image');
+                    const imageTitleText = imageContainer.getAttribute('data-title');
+                    openImageModal(imageSrc, imageTitleText);
+                });
+            });
+        }
+
+        // Open image modal
+        function openImageModal(imageSrc, title) {
+            currentImages = Array.from(document.querySelectorAll('.product-image, .profile-image'))
+                .filter(img => img.querySelector('img') && img.querySelector('img').src)
+                .map(img => ({
+                    src: img.getAttribute('data-image'),
+                    title: img.getAttribute('data-title')
+                }));
+            
+            currentImageIndex = currentImages.findIndex(img => img.src === imageSrc);
+            
+            if (currentImageIndex === -1) {
+                currentImages = [{ src: imageSrc, title: title }];
+                currentImageIndex = 0;
+                modalPrev.style.display = 'none';
+                modalNext.style.display = 'none';
+            } else {
+                modalPrev.style.display = 'flex';
+                modalNext.style.display = 'flex';
+            }
+            
+            modalImage.src = imageSrc;
+            imageTitle.textContent = title;
+            
+            imageModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close image modal
+        function closeImageModal() {
+            imageModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Show previous image in modal
+        function showPrevImage() {
+            if (currentImages.length <= 1) return;
+            
+            currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+            modalImage.src = currentImages[currentImageIndex].src;
+            imageTitle.textContent = currentImages[currentImageIndex].title;
+        }
+
+        // Show next image in modal
+        function showNextImage() {
+            if (currentImages.length <= 1) return;
+            
+            currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+            modalImage.src = currentImages[currentImageIndex].src;
+            imageTitle.textContent = currentImages[currentImageIndex].title;
+        }
+
+        // Add product to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const rateValue = parseFloat(product.specs.rate.replace('₹', '').replace(' per unit', ''));
+            
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 500;
+            } else {
+                cart.push({
+                    id: product.id,
+                    title: product.title,
+                    rate: rateValue,
+                    quantity: 2000
+                });
+            }
+            
+            localStorage.setItem('vaniGraphicsCart', JSON.stringify(cart));
+            updateCartDisplay();
+            
+            floatingCart.classList.add('flash');
+            setTimeout(() => {
+                floatingCart.classList.remove('flash');
+            }, 500);
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            const totalItems = cart.reduce((sum, item) => sum + 1, 0);
+            cartCount.textContent = totalItems;
+            
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="empty-cart-message">Your cart is empty</p>';
+            } else {
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <div class="item-info">
+                            <h4>${item.title}</h4>
+                            <p>Rate: ₹${item.rate.toFixed(2)} per unit</p>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                            <input type="number" class="quantity-input" value="${item.quantity}" min="2000" step="500" data-id="${item.id}">
+                            <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                            <button class="remove-item" data-id="${item.id}">×</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItem);
+                });
+                
+                document.querySelectorAll('.decrease').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = parseInt(e.target.getAttribute('data-id'));
+                        updateQuantity(id, -500);
+                    });
+                });
+                
+                document.querySelectorAll('.increase').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = parseInt(e.target.getAttribute('data-id'));
+                        updateQuantity(id, 500);
+                    });
+                });
+                
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    input.addEventListener('change', (e) => {
+                        const id = parseInt(e.target.getAttribute('data-id'));
+                        const newQuantity = parseInt(e.target.value);
+                        
+                        if (newQuantity < 2000) {
+                            e.target.value = 2000;
+                            updateQuantity(id, 0, 2000);
+                        } else {
+                            updateQuantity(id, 0, newQuantity);
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = parseInt(e.target.getAttribute('data-id'));
+                        removeFromCart(id);
+                    });
+                });
+            }
+            
+            updateCartTotals();
+        }
+
+        // Update item quantity in cart
+        function updateQuantity(productId, change, newQuantity = null) {
+            const item = cart.find(item => item.id === productId);
+            if (!item) return;
+            
+            if (newQuantity !== null) {
+                item.quantity = newQuantity;
+            } else {
+                item.quantity += change;
+                if (item.quantity < 2000) item.quantity = 2000;
+            }
+            
+            localStorage.setItem('vaniGraphicsCart', JSON.stringify(cart));
+            updateCartDisplay();
+        }
+
+        // Remove item from cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('vaniGraphicsCart', JSON.stringify(cart));
+            updateCartDisplay();
+        }
+
+        // Update cart totals
+        function updateCartTotals() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.rate * item.quantity), 0);
+            const gst = subtotal * 0.05;
+            const total = subtotal + gst;
+            
+            subtotalElement.textContent = `₹${subtotal.toFixed(2)}`;
+            gstElement.textContent = `₹${gst.toFixed(2)}`;
+            totalElement.textContent = `₹${total.toFixed(2)}`;
+        }
+
+        // Clear cart
+        function clearCart() {
+            if (confirm('Are you sure you want to clear your cart?')) {
+                cart = [];
+                localStorage.setItem('vaniGraphicsCart', JSON.stringify(cart));
+                updateCartDisplay();
+            }
+        }
+
+        // Send WhatsApp order
+        function sendWhatsAppOrder() {
+            if (cart.length === 0) {
+                alert('Your cart is empty. Add some products first.');
+                return;
+            }
+            
+            let message = "Hello VANI GRAPHICS,\n\nI would like to place an order for the following items:\n\n";
+            
+            cart.forEach(item => {
+                message += `- ${item.title}: ${item.quantity} units at ₹${item.rate.toFixed(2)} each\n`;
+            });
+            
+            message += `\nSubtotal: ${subtotalElement.textContent}`;
+            message += `\nGST (5%): ${gstElement.textContent}`;
+            message += `\nTotal: ${totalElement.textContent}`;
+            message += `\n\nPlease confirm availability and delivery timeline.`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/917770975666?text=${encodedMessage}`, '_blank');
+        }
+
+        // Handle quotation form submission
+        function handleQuotationSubmit(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(quotationForm);
+            const unitType = formData.get('unit-type');
+            const length = formData.get('length');
+            const width = formData.get('width');
+            const height = formData.get('height');
+            const material = formData.get('material');
+            const gsm = formData.get('gsm');
+            const boxType = formData.get('box-type');
+            const otherBoxType = formData.get('other-box-type');
+            const quantity = formData.get('quantity');
+            const finishes = formData.getAll('finishes');
+            
+            const allEmpty = !unitType && !length && !width && !height && !material && 
+                            !gsm && !boxType && !quantity && finishes.length === 0;
+            
+            let message;
+            
+            if (allEmpty) {
+                message = "Hello VANI GRAPHICS,\n\nPlease call me to discuss packaging requirements.";
+            } else {
+                message = "Hello VANI GRAPHICS,\n\nI would like to request a quotation for the following packaging requirements:\n\n";
+                
+                if (unitType) message += `Unit Type: ${unitType}\n`;
+                if (length || width || height) {
+                    message += `Dimensions: ${length || '-'}x${width || '-'}x${height || '-'} ${unitType || ''}\n`;
+                }
+                if (material) message += `Material: ${material}\n`;
+                if (gsm) message += `GSM: ${gsm}\n`;
+                if (boxType) {
+                    if (boxType === 'other' && otherBoxType) {
+                        message += `Box Type: ${otherBoxType}\n`;
+                    } else {
+                        message += `Box Type: ${boxType}\n`;
+                    }
+                }
+                if (quantity) message += `Quantity: ${quantity} units\n`;
+                if (finishes.length > 0) {
+                    message += `Special Finishes: ${finishes.join(', ')}\n`;
+                }
+                
+                message += "\nPlease provide a quotation at your earliest convenience.";
+            }
+            
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/917770975666?text=${encodedMessage}`, '_blank');
+        }
+
+        // Clear quotation form
+        function clearQuotationForm() {
+            quotationForm.reset();
+            otherBoxTypeContainer.classList.add('hidden');
+        }
+
+        // Initialize the application when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
